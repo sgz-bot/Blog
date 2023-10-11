@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+<main>
+    <section>
+        <div class="container">
+            <h1 class="mb-4 text-center">Liste des articles</h1>
+
+            <a href="articles/add/" class="btn btn-outline-primary mt-5">Ajouter un article</a>
+            <table class="table table-striped">
+                <tr>
+                    <th>Nom de l'article</th>
+                    <th>Opérations</th>
+                </tr>
+                {% for article in articles %}
+                    <tr>
+                        <td>
+                            {{ article.title }}
+                        </td>
+                        <td>
+                            <a href="{% url 'article_detail' article.id %}" class="btn btn-primary">Détails</a>
+                            <a href="{% url 'article_update' article.id %}" class="btn btn-success">Edited</a>
+                            <a href="{% url 'article_delete' article.id %}" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+
+                {% endfor %} 
+            </table>            
+        </div>
+    </section>
+</main>
+{% endblock %}
