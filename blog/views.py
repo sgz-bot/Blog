@@ -2,6 +2,7 @@ from django.core.mail import send_mail
 from django.shortcuts import render, redirect
 from .models import Article
 from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 
 
 from .forms import ContactUsForm, ArticleForm
@@ -43,6 +44,7 @@ def article_detail(request, id):
     article = Article.objects.get(id=id)
     return render(request, 'article/article_detail.html', {'article': article})
 
+@login_required
 def article_create(request): 
     if request.method == 'POST': 
         form = ArticleForm(request.POST, request.FILES)

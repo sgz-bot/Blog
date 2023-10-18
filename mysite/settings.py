@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
+    'authentication',
 ]
 
 MIDDLEWARE = [
@@ -54,10 +55,13 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'mysite.urls'
 
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = "home"
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR.joinpath('templates'),],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -100,13 +104,18 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
+    {
+        'NAME': 'authentication.validators.ContainsLetterValidator',
+    },
 ]
+
+AUTH_USER_MODEL = 'authentication.User'
 
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = "fr-fr"
 
 TIME_ZONE = 'UTC'
 
